@@ -10,9 +10,10 @@ This project allows you to verify and inspect eBPF programs loaded into the kern
 
 ---
 
-## File Structure
+## 📦 Project Structure
 
-```plaintext
+```
+
 ebpf-gadget-inspector/
 ├── Makefile               # Build configuration for process_monitor.elf
 ├── README.md              # This complete file
@@ -21,64 +22,78 @@ ebpf-gadget-inspector/
 ├── go.sum                 # Go checksum file
 ├── main.go                # Main Go file containing logic for loading and inspecting eBPF programs
 └── process_monitor.c      # C source file for a process-monitoring eBPF program
-Setup & Installation
-Prerequisites
+
+```
+
+## 🔧 Setup & Installation
+
 Ensure you have the following installed on your system:
 
-Go (version 1.16 or higher)
-Download from: https://golang.org/dl/
+### 1. Go (version 1.16 or higher)
+```
+Download from: [https://golang.org/dl/](https://golang.org/dl/)
+```
+### 2. Clang with BPF target support
+Install with:
 
-Clang with BPF target support
-Install with: sudo apt-get install clang llvm
+```bash
+sudo apt-get install clang llvm
+```
 
-Linux Headers
-Install with: sudo apt-get install linux-headers-$(uname -r)
+## 3.Linux Headers
+Install with: 
+```bash
+sudo apt-get install linux-headers-$(uname -r)
+```
 
-Cilium eBPF Go Library
-Install with: go get github.com/cilium/ebpf
-
-Setting Up the Project
+## Cilium eBPF Go Library
+Install with: 
+```bash
+go get github.com/cilium/ebpf
+```
+## Setting Up the Project
 Clone the Repository
-
-bash
-Copy
+```bash
 git clone https://github.com/SumangalChhetri/ebpf-gadget-inspector.git
 cd ebpf-gadget-inspector
-Build the eBPF Program
+```
+
+## Build the eBPF Program
 Compile the C eBPF program:
 
-bash
-Copy
+```bash
 clang -O2 -g -target bpf -c process_monitor.c -o process_monitor.elf
-Build the Go Binary
-Compile the Gadget Inspector tool:
+```
 
-bash
-Copy
+## Build the Go Binary
+Compile the Gadget Inspector tool:
+```bash
 go build -o gadget-inspector main.go
-Install Go Dependencies
+```
+
+## Install Go Dependencies
 Ensure all dependencies are installed:
 
-bash
-Copy
+```bash
 go mod tidy
-(Optional) Use the Makefile
+```
+
+## (Optional) Use the Makefile
 Build the eBPF program using the provided Makefile:
 
-bash
-Copy
+```bash
 make
-Usage
+```
+## Usage
 To run the gadget-inspector tool and inspect an eBPF ELF file, use the following command:
-
-bash
-Copy
+```bash
 sudo ./gadget-inspector ./process_monitor.elf
-Expected Output
+```
+
+## Expected Output
 When the tool runs successfully, the output should look like this:
 
-bash
-Copy
+```bash
 ✅ eBPF program loaded successfully!
 
 🔍 eBPF Programs:
@@ -90,27 +105,34 @@ Copy
   Type: Hash
   Key Size: 4 bytes
   Value Size: 16 bytes
-Troubleshooting
+```
+
+## Troubleshooting
 Clang & Linux Headers
 Ensure you have the correct versions installed:
 
-bash
-Copy
+```bash
 sudo apt-get install linux-headers-$(uname -r)
-File Paths
+```
+
+## File Paths
 Verify that the correct path to process_monitor.elf is provided when running the tool.
 
-Permissions
+## Permissions
 Run the tool with sudo since loading eBPF programs requires elevated privileges.
 
-Contribution
-Contributions are welcome! If you'd like to contribute:
+## Contribution
 
-Fork this repository.
+1.Contributions are welcome! If you'd like to contribute:
 
-Make your changes.
+2.Fork this repository.
 
-Submit a pull request describing your improvements or bug fixes.
+3.Make your changes.
 
-License
+4.Submit a pull request describing your improvements or bug fixes.
+
+## 📜 License
+
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
